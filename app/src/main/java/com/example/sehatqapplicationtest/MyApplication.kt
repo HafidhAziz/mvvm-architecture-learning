@@ -1,6 +1,7 @@
 package com.example.sehatqapplicationtest
 
 import android.app.Application
+import com.example.sehatqapplicationtest.util.PreferenceManager
 import dagger.hilt.android.HiltAndroidApp
 
 /**
@@ -8,4 +9,9 @@ import dagger.hilt.android.HiltAndroidApp
  */
 
 @HiltAndroidApp
-class MyApplication : Application()
+class MyApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        PreferenceManager.init(this)
+    }
+}
