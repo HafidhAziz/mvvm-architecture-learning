@@ -10,4 +10,8 @@ import androidx.room.RoomDatabase
 @Database(entities = [PurchaseHistory::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
     abstract fun purchaseHistoryDao() : PurchaseHistoryDao
+
+    companion object{
+        const val DATABASE_NAME: String = "app.db"
+    }
 }
