@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.SehatQApplicationTest" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.SehatQApplicationTest" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/turquoise</item>
         <item name="colorPrimaryVariant">@color/turquoise_700</item>

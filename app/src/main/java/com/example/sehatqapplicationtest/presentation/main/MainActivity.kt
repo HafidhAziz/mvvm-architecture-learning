@@ -1,8 +1,10 @@
-package com.example.sehatqapplicationtest.presentation
+package com.example.sehatqapplicationtest.presentation.main
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.sehatqapplicationtest.R
@@ -13,9 +15,18 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), MainView,
+    BottomNavigationView.OnNavigationItemSelectedListener {
 
     lateinit var binding: ActivityMainBinding
+
+    companion object {
+
+        fun startThisActivity(context: Context) {
+            val intent = Intent(context, MainActivity::class.java)
+            context.startActivity(intent)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +45,7 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         return loadFragment(fragment)
     }
 
-    private fun loadFragment(fragment: Fragment?): Boolean {
+    override fun loadFragment(fragment: Fragment?): Boolean {
         if (fragment != null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fl_container, fragment)
