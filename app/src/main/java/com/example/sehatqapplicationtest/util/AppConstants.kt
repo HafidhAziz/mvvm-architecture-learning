@@ -7,5 +7,7 @@ package com.example.sehatqapplicationtest.util
 class AppConstants {
     companion object INSTANCE {
         const val BASE_URL = "https://private-4639ce-ecommerce56.apiary-mock.com/"
+
+        const val EXTRA_PRODUCT_PROMO_STR = "EXTRA_PRODUCT_PROMO_STR"
     }
 }
