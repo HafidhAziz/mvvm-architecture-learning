@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SehatQApplicationTest">
-        <activity android:name=".presentation.main.MainActivity"/>
+        <activity android:name=".presentation.purchasehistory.PurchaseHistoryActivity" />
+        <activity android:name=".presentation.main.MainActivity" />
         <activity android:name=".presentation.productsearch.ProductSearchActivity" />
         <activity android:name=".presentation.productdetail.ProductDetailActivity" />
         <activity android:name=".presentation.login.LoginActivity">

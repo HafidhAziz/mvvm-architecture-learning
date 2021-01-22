@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -15,7 +16,11 @@ import com.example.sehatqapplicationtest.data.ProductPromoEntity
 import com.example.sehatqapplicationtest.databinding.FragmentHomeBinding
 import com.example.sehatqapplicationtest.presentation.home.adapter.CategoryAdapter
 import com.example.sehatqapplicationtest.presentation.home.adapter.HomeProductListAdapter
+import com.example.sehatqapplicationtest.presentation.productdetail.ProductDetailActivity
+import com.example.sehatqapplicationtest.presentation.productsearch.ProductSearchActivity
+import com.example.sehatqapplicationtest.util.CommonUtils
 import com.example.sehatqapplicationtest.util.Status
+import com.example.sehatqapplicationtest.util.ViewUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -23,10 +28,10 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), HomeView {
+class HomeFragment : Fragment(), HomeView, HomeProductListAdapter.ClickItemListener {
 
     lateinit var binding: FragmentHomeBinding
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var promoProductAdapter: HomeProductListAdapter
 
@@ -36,10 +41,25 @@ class HomeFragment : Fragment(), HomeView {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
+        setupToolbar()
         setupUI()
         setupObserver()
 
         return binding.root
+    }
+
+    override fun setupToolbar() {
+        binding.toolbarHome.apply {
+            btnBack.visibility = View.GONE
+            btnFav.visibility = View.VISIBLE
+            searchInputQuery.setOnFocusChangeListener { view, focused ->
+                if (focused) {
+                    ViewUtils.hideKeyboard(requireContext(), searchInputQuery)
+                    view.clearFocus()
+                    ProductSearchActivity.startThisActivity(requireContext())
+                }
+            }
+        }
     }
 
     override fun setupUI() {
@@ -54,11 +74,12 @@ class HomeFragment : Fragment(), HomeView {
         promoProductLayoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.productListRecycler.layoutManager = promoProductLayoutManager
         promoProductAdapter = HomeProductListAdapter(arrayListOf())
+        promoProductAdapter.setClickItemListener(this)
         binding.productListRecycler.adapter = promoProductAdapter
     }
 
     override fun setupObserver() {
-        homeViewModel.homeData.observe(requireActivity(), {
+        viewModel.homeData.observe(requireActivity(), {
             when (it.status) {
                 Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
@@ -96,5 +117,15 @@ class HomeFragment : Fragment(), HomeView {
         promoProductAdapter.notifyDataSetChanged()
     }
 
+    override fun onClickItemListener(productPromoEntity: ProductPromoEntity) {
+        ProductDetailActivity.startThisActivity(
+            requireContext(),
+            CommonUtils.convertClassToJson(productPromoEntity).orEmpty()
+        )
+    }
 
+    override fun onResume() {
+        super.onResume()
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
 }

@@ -38,6 +38,6 @@ data class ProductPromoEntity(
     @Json(name = "price")
     val price: String? = "",
     @Json(name = "loved")
-    val loved: String? = ""
+    val loved: Int = 0
 
 )

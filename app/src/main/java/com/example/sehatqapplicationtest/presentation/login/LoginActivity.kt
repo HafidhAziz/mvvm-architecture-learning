@@ -47,16 +47,26 @@ class LoginActivity : AppCompatActivity(), LoginView {
         binding.btnSignIn.setOnClickListener {
             var isValid = true
             binding.apply {
+                tilUsername.isErrorEnabled = false
+                tilPassword.isErrorEnabled = false
                 usernameError.visibility = View.GONE
                 passwordError.visibility = View.GONE
             }
             if (binding.username.text.isNullOrEmpty()) {
                 isValid = false
-                binding.usernameError.visibility = View.VISIBLE
+                binding.apply {
+                    tilUsername.isErrorEnabled = true
+                    tilUsername.error = "error"
+                    usernameError.visibility = View.VISIBLE
+                }
             }
             if (binding.password.text.isNullOrEmpty()) {
                 isValid = false
-                binding.passwordError.visibility = View.VISIBLE
+                binding.apply {
+                    tilPassword.isErrorEnabled = true
+                    tilPassword.error = "error"
+                    passwordError.visibility = View.VISIBLE
+                }
             }
 
             if (isValid) {

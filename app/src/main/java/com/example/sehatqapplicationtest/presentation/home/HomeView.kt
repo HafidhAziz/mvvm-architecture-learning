@@ -12,4 +12,5 @@ interface HomeView {
     fun setupObserver()
     fun renderCategoryList(users: List<CategoryEntity>)
     fun renderProductList(users: List<ProductPromoEntity>)
+    fun setupToolbar()
 }

@@ -7,4 +7,5 @@ package com.example.sehatqapplicationtest.presentation.productdetail
 interface ProductDetailView {
 
     fun setupViews()
+    fun getArguments()
 }

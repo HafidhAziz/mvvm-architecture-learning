@@ -4,13 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.sehatqapplicationtest.R
 import com.example.sehatqapplicationtest.databinding.ActivityMainBinding
 import com.example.sehatqapplicationtest.presentation.home.HomeFragment
-import com.example.sehatqapplicationtest.presentation.purchasehistory.PurchaseHistoryFragment
+import com.example.sehatqapplicationtest.presentation.profile.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity(), MainView,
         var fragment: Fragment? = null
         when (item.itemId) {
             R.id.home_menu -> fragment = HomeFragment()
-            R.id.profile_menu -> fragment = PurchaseHistoryFragment()
+            R.id.profile_menu -> fragment = ProfileFragment()
         }
         return loadFragment(fragment)
     }
@@ -53,5 +54,10 @@ class MainActivity : AppCompatActivity(), MainView,
             return true
         }
         return false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        this.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 }

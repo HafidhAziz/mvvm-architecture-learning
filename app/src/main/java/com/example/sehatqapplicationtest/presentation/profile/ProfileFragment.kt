@@ -1,4 +1,4 @@
-package com.example.sehatqapplicationtest.presentation.purchasehistory
+package com.example.sehatqapplicationtest.presentation.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 
 @AndroidEntryPoint
-class PurchaseHistoryFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
     lateinit var binding: FragmentPurchaseHistoryBinding
 
