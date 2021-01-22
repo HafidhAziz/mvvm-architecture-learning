@@ -29,6 +29,7 @@
     <string name="buy">BUY</string>
 
     <string name="purchase_history">Purchase History</string>
+    <string name="logged_in_as">Hi %1s</string>
     <string name="logout">Logout</string>
 
 

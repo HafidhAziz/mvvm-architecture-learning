@@ -8,6 +8,7 @@ import com.google.android.gms.tasks.Task
  */
 
 interface LoginView {
+    fun setupUI()
     fun setupFbSignIn()
     fun setupGoogleSignIn()
     fun onClickFacebook()

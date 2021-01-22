@@ -12,6 +12,7 @@ import com.example.sehatqapplicationtest.R
 import com.example.sehatqapplicationtest.databinding.ActivityLoginBinding
 import com.example.sehatqapplicationtest.presentation.main.MainActivity
 import com.example.sehatqapplicationtest.util.PreferenceManager
+import com.example.sehatqapplicationtest.util.ViewUtils
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -48,7 +49,25 @@ class LoginActivity : AppCompatActivity(), LoginView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+
+        if (PreferenceManager.loginStatus) {
+            MainActivity.startThisActivity(this)
+            finish()
+            return
+        }
+
         auth = FirebaseAuth.getInstance()
+
+        setupUI()
+        setupFbSignIn()
+        setupGoogleSignIn()
+    }
+
+    override fun setupUI() {
+        if (PreferenceManager.rememberStatus) {
+            binding.username.setText(PreferenceManager.rememberUsernameValue.orEmpty())
+            binding.checkBox.isChecked = true
+        }
 
         binding.btnSignIn.setOnClickListener {
             var isValid = true
@@ -76,9 +95,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
             }
 
             if (isValid) {
-                if (binding.checkBox.isChecked) {
-                    PreferenceManager.rememberStatus = true
-                }
+                PreferenceManager.rememberStatus = binding.checkBox.isChecked
+                PreferenceManager.rememberUsernameValue = binding.username.text.toString()
+                ViewUtils.hideKeyboard(this, binding.password)
                 goToMainPage()
             }
         }
@@ -90,9 +109,6 @@ class LoginActivity : AppCompatActivity(), LoginView {
         binding.tvGoogle.setOnClickListener {
             onClickGoogle()
         }
-
-        setupFbSignIn()
-        setupGoogleSignIn()
     }
 
     override fun setupFbSignIn() {

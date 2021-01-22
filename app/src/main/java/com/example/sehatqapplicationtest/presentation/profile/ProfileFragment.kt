@@ -56,6 +56,8 @@ class ProfileFragment : Fragment(), ProfileView {
                 activity?.finish()
                 LoginActivity.startThisActivity(requireContext())
             }
+            loggedInUser.text =
+                getString(R.string.logged_in_as, PreferenceManager.rememberUsernameValue)
         }
     }
 }

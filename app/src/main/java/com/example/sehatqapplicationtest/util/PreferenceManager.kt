@@ -15,6 +15,7 @@ object PreferenceManager {
 
     private val isLogin = Pair("IS_LOGIN", false)
     private val isRemember = Pair("IS_REMEMBER", false)
+    private val rememberUsername = Pair("REMEMBER_USERNAME", "")
 
     fun init(context: Context) {
         preferences = context.getSharedPreferences(NAME, MODE)
@@ -40,6 +41,12 @@ object PreferenceManager {
         get() = preferences.getBoolean(isRemember.first, isRemember.second)
         set(value) = preferences.edit {
             it.putBoolean(isRemember.first, value)
+        }
+
+    var rememberUsernameValue: String?
+        get() = preferences.getString(rememberUsername.first, rememberUsername.second)
+        set(value) = preferences.edit {
+            it.putString(rememberUsername.first, value)
         }
 
 }
