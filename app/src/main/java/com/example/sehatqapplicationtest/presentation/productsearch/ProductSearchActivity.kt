@@ -155,7 +155,8 @@ class ProductSearchActivity : AppCompatActivity(), ProductSearchView,
     override fun onClickItemListener(productPromoEntity: ProductPromoEntity) {
         ProductDetailActivity.startThisActivity(
             this,
-            CommonUtils.convertClassToJson(productPromoEntity).orEmpty()
+            CommonUtils.convertClassToJson(productPromoEntity).orEmpty(),
+            false
         )
     }
 }

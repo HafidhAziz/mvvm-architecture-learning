@@ -18,11 +18,11 @@ class PurchaseHistoryLocalDataSource @Inject constructor(private val purchaseHis
         Handler(Looper.getMainLooper())
     }
 
-    override fun addPurchase(productId: String, name: String, price: String, image: String) {
+    override fun addPurchase(title: String, description: String, price: String, imageUrl: String) {
         executorService.execute {
             purchaseHistoryDao.insert(
                 PurchaseHistory(
-                    productId, name, price, image
+                    title, description, price, imageUrl
                 )
             )
         }

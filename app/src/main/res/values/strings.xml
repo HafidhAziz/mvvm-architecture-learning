@@ -23,7 +23,12 @@
 
     <string name="search_hint">Cari Product</string>
     <string name="search_empty_result">Pencarian tidak ditemukan</string>
+
+    <string name="share_content">Bagikan product ini</string>
+    <string name="choose_app">Pilih aplikasi</string>
     <string name="buy">BUY</string>
+
+    <string name="purchase_history">Purchase History</string>
 
 
 </resources>

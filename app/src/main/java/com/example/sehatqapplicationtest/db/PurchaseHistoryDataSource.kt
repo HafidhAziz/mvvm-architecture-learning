@@ -5,6 +5,6 @@ package com.example.sehatqapplicationtest.db
  */
 
 interface PurchaseHistoryDataSource {
-    fun addPurchase(productId: String, name: String, price: String, image: String)
+    fun addPurchase(title: String, description: String, price: String, imageUrl: String)
     fun getAllPurchaseHistory(callback: (List<PurchaseHistory>) -> Unit)
 }

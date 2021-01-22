@@ -184,8 +184,6 @@ class LoginActivity : AppCompatActivity(), LoginView {
                     Toast.makeText(this@LoginActivity, "Authentication Failed.", Toast.LENGTH_SHORT)
                         .show()
                 }
-
-                // ...
             }
     }
 }

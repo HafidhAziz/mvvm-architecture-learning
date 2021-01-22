@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.sehatqapplicationtest.R
-import com.example.sehatqapplicationtest.databinding.FragmentPurchaseHistoryBinding
+import com.example.sehatqapplicationtest.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -17,14 +17,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
-    lateinit var binding: FragmentPurchaseHistoryBinding
+    lateinit var binding: FragmentProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_purchase_history, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         return binding.root
     }
 

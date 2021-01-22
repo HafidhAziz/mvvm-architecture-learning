@@ -120,7 +120,8 @@ class HomeFragment : Fragment(), HomeView, HomeProductListAdapter.ClickItemListe
     override fun onClickItemListener(productPromoEntity: ProductPromoEntity) {
         ProductDetailActivity.startThisActivity(
             requireContext(),
-            CommonUtils.convertClassToJson(productPromoEntity).orEmpty()
+            CommonUtils.convertClassToJson(productPromoEntity).orEmpty(),
+            false
         )
     }
 

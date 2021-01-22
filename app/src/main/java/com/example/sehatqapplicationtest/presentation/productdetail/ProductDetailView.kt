@@ -8,4 +8,6 @@ interface ProductDetailView {
 
     fun setupViews()
     fun getArguments()
+    fun onClickShare()
+    fun onClickBuy()
 }

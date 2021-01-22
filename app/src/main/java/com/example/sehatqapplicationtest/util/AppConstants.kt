@@ -9,5 +9,6 @@ class AppConstants {
         const val BASE_URL = "https://private-4639ce-ecommerce56.apiary-mock.com/"
 
         const val EXTRA_PRODUCT_PROMO_STR = "EXTRA_PRODUCT_PROMO_STR"
+        const val EXTRA_FROM_PURCHASE_HISTORY = "EXTRA_FROM_PURCHASE_HISTORY"
     }
 }

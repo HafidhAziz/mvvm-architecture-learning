@@ -5,4 +5,7 @@ package com.example.sehatqapplicationtest.presentation.purchasehistory
  */
 
 interface PurchaseHistoryView {
+    fun setupToolbar()
+    fun setupUI()
+    fun setupData()
 }
