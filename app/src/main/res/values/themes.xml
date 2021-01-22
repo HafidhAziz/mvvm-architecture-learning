@@ -26,6 +26,11 @@
         <item name="android:background">@drawable/bg_turquoise_with_radius_10</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>
-
     </style>
+
+    <style name="ErrorTextAppearance" parent="@style/TextAppearance.AppCompat">
+        <item name="android:textColor">@color/lipstick</item>
+        <item name="android:textSize">0sp</item>
+    </style>
+
 </resources>

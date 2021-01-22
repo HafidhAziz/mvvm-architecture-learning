@@ -10,7 +10,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/influencer_category_layout"
+        android:id="@+id/category_layout"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:background="@drawable/bg_card_white_with_shadow"

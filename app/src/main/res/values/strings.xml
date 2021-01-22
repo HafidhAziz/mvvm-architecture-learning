@@ -8,7 +8,9 @@
 
     <string name="login">LOGIN</string>
     <string name="username">Username</string>
+    <string name="username_empty_error">Username can not be empty</string>
     <string name="password">Password</string>
+    <string name="password_empty_error">Password can not be empty</string>
     <string name="remember_me">Remember Me</string>
     <string name="sign_in">Sign In</string>
     <string name="sign_in_fb">Sign In with Facebook</string>

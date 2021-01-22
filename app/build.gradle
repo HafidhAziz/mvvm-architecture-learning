@@ -63,6 +63,7 @@ dependencies {
     }
     api "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     api("com.squareup.okhttp3:okhttp:$rootProject.okHttpVersion")
+    api "com.squareup.retrofit2:converter-moshi:2.9.0"
 
     // parser
     api "com.google.code.gson:gson:$rootProject.gsonVersion"
@@ -79,6 +80,8 @@ dependencies {
     //hilt
     api "com.google.dagger:hilt-android:$rootProject.hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
+    api 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0-alpha02'
 
     // play services
     api "com.google.android.gms:play-services-base:$rootProject.playserviceBaseVersion"

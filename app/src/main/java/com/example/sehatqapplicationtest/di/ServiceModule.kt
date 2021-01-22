@@ -5,8 +5,6 @@ import com.example.sehatqapplicationtest.api.ApiHelper
 import com.example.sehatqapplicationtest.api.ApiHelperImpl
 import com.example.sehatqapplicationtest.api.AppApiService
 import com.example.sehatqapplicationtest.util.AppConstants
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +12,7 @@ import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 /**
@@ -24,14 +22,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(ApplicationComponent::class)
 object ServiceModule {
-
-    @Singleton
-    @Provides
-    fun provideGsonBuilder(): Gson {
-        return GsonBuilder()
-            .excludeFieldsWithoutExposeAnnotation()
-            .create()
-    }
 
     @Provides
     @Singleton
@@ -48,13 +38,12 @@ object ServiceModule {
     @Singleton
     @Provides
     fun provideRetrofit(
-        okHttpClient: OkHttpClient,
-        gson: Gson
+        okHttpClient: OkHttpClient
     ): Retrofit.Builder {
         return Retrofit.Builder()
+            .addConverterFactory(MoshiConverterFactory.create())
             .baseUrl(AppConstants.BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create(gson))
     }
 
     @Singleton
