@@ -66,8 +66,24 @@ class ProductDetailActivity : AppCompatActivity(), ProductDetailView {
             Glide.with(productDetailImage.context)
                 .load(viewModel.getProduct()?.imageUrl)
                 .into(productDetailImage)
+
+            if (viewModel.getProduct()?.loved == 1) {
+                fav.setImageResource(R.drawable.ic_fav_selected)
+            } else {
+                fav.setImageResource(R.drawable.ic_fav)
+            }
+
             if (viewModel.isFromPurchaseHistory()) {
                 clFooter.visibility = View.GONE
+            }
+
+            fav.setOnClickListener {
+                if (viewModel.isLoved()) {
+                    fav.setImageResource(R.drawable.ic_fav)
+                } else {
+                    fav.setImageResource(R.drawable.ic_fav_selected)
+                }
+                viewModel.loved = !viewModel.isLoved()
             }
 
             btnBack.setOnClickListener {
