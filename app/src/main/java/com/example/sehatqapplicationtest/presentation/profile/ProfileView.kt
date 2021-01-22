@@ -5,4 +5,6 @@ package com.example.sehatqapplicationtest.presentation.profile
  */
 
 interface ProfileView {
+    fun setupToolbar()
+    fun setupUI()
 }

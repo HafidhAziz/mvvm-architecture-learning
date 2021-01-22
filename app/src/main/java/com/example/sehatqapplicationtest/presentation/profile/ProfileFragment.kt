@@ -8,6 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.sehatqapplicationtest.R
 import com.example.sehatqapplicationtest.databinding.FragmentProfileBinding
+import com.example.sehatqapplicationtest.presentation.login.LoginActivity
+import com.example.sehatqapplicationtest.presentation.purchasehistory.PurchaseHistoryActivity
+import com.example.sehatqapplicationtest.util.PreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -15,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 
 @AndroidEntryPoint
-class ProfileFragment : Fragment() {
+class ProfileFragment : Fragment(), ProfileView {
 
     lateinit var binding: FragmentProfileBinding
 
@@ -25,8 +28,34 @@ class ProfileFragment : Fragment() {
     ): View {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
+
+        setupToolbar()
+        setupUI()
+
         return binding.root
     }
 
+    override fun setupToolbar() {
+        binding.toolbarProfile.apply {
+            btnBack.visibility = View.GONE
+            searchLayout.visibility = View.GONE
+            tvTitle.apply {
+                text = getString(R.string.profile)
+                visibility = View.VISIBLE
+            }
+        }
+    }
 
+    override fun setupUI() {
+        binding.apply {
+            purchaseHistoryMenu.setOnClickListener {
+                PurchaseHistoryActivity.startThisActivity(requireContext())
+            }
+            logoutMenu.setOnClickListener {
+                PreferenceManager.loginStatus = false
+                activity?.finish()
+                LoginActivity.startThisActivity(requireContext())
+            }
+        }
+    }
 }

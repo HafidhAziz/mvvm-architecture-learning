@@ -1,5 +1,6 @@
 package com.example.sehatqapplicationtest.presentation.login
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -37,6 +38,11 @@ class LoginActivity : AppCompatActivity(), LoginView {
     companion object {
         private const val RC_SIGN_IN =
             1003 // this generate a random int between 1 and 1000, WORKING OK
+
+        fun startThisActivity(context: Context) {
+            val intent = Intent(context, LoginActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -152,6 +158,7 @@ class LoginActivity : AppCompatActivity(), LoginView {
     }
 
     override fun goToMainPage() {
+        finish()
         PreferenceManager.loginStatus = true
         MainActivity.startThisActivity(this)
     }
